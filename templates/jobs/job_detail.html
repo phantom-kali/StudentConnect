@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ job.title }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="content-container">
+            <h2 class="mb-4">{{ job.title }}</h2>
+            <p><strong>Company:</strong> {{ job.company }}</p>
+            <p><strong>Location:</strong> {{ job.location }}</p>
+            <p><strong>Salary:</strong> {{ job.salary }}</p>
+            <p><strong>Posted by:</strong> {{ job.poster.username }}</p>
+            <p><strong>Posted on:</strong> {{ job.created_at }}</p>
+            <p><strong>Deadline:</strong> {{ job.deadline }}</p>
+            <p><strong>Status:</strong> {{ job.get_status_display }}</p>
+            <h3 class="mt-4">Description:</h3>
+            <p>{{ job.description }}</p>
+
+            {% if user == job.poster %}
+                <a href="{% url 'jobs:view_applicants' job.id %}" class="btn btn-secondary">View Applicants</a>
+                
+                <form method="post" action="{% url 'jobs:update_job_status' job.id %}" class="mt-3">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="status">Update Job Status:</label>
+                        <select name="status" id="status" class="form-control">
+                            {% for value, label in job.STATUS_CHOICES %}
+                                <option value="{{ value }}" {% if job.status == value %}selected{% endif %}>{{ label }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-2">Update Status</button>
+                </form>
+            {% endif %}
+            
+            {% if job.status == 'open' and user != job.poster %}
+                <a href="{% url 'jobs:apply_job' job.id %}" class="btn btn-primary">Apply for this job</a>
+            {% endif %}
+            <a href="{% url 'jobs:job_list' %}" class="btn btn-secondary">Back to Job Listings</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

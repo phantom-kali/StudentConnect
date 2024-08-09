@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Post a New Job{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="content-container">
+            <h2 class="mb-4">Post a New Job</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Post Job</button>
+            </form>
+            <a href="{% url 'jobs:job_list' %}" class="btn btn-secondary">Back to Job Listings</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

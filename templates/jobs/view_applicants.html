@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Applicants for {{ job.title }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="content-container">
+            <h2 class="mb-4">Applicants for {{ job.title }}</h2>
+            {% for application in applications %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h3 class="card-title">{{ application.applicant.username }}</h3>
+                        <p><strong>Status:</strong> {{ application.get_status_display }}</p>
+                        <p><strong>Applied on:</strong> {{ application.created_at }}</p>
+                        <a href="{{ application.resume.url }}" target="_blank" class="btn btn-secondary btn-sm">View Resume</a>
+                        <h4 class="mt-3">Cover Letter:</h4>
+                        <p>{{ application.cover_letter }}</p>
+                        <form method="post" action="{% url 'jobs:update_application_status' application.id %}">
+                            {% csrf_token %}
+                            <select name="status" class="form-control mb-2">
+                                {% for value, label in application.STATUS_CHOICES %}
+                                    <option value="{{ value }}" {% if application.status == value %}selected{% endif %}>{{ label }}</option>
+                                {% endfor %}
+                            </select>
+                            <button type="submit" class="btn btn-primary">Update Status</button>
+                        </form>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No applications received yet.</p>
+            {% endfor %}
+            <a href="{% url 'jobs:job_list' %}" class="btn btn-secondary">Back to Job Listings</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

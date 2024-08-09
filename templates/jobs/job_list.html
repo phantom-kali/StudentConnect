@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}Job Listings{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="content-container">
+            <h2 class="mb-4">Job Listings</h2>
+            <a href="{% url 'jobs:create_job' %}" class="btn btn-primary mb-4">Post a New Job</a>
+            <a href="{% url 'jobs:my_applications' %}" class="btn btn-secondary mb-4">My Applications</a>
+            
+            <form method="get" class="mb-4">
+                <div class="row">
+                    <div class="col-md-3">
+                        {{ form.title.label_tag }}
+                        {{ form.title }}
+                    </div>
+                    <div class="col-md-3">
+                        {{ form.company.label_tag }}
+                        {{ form.company }}
+                    </div>
+                    <div class="col-md-3">
+                        {{ form.location.label_tag }}
+                        {{ form.location }}
+                    </div>
+                    <div class="col-md-3">
+                        {{ form.status.label_tag }}
+                        {{ form.status }}
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-3">
+                        {{ form.sort_by.label_tag }}
+                        {{ form.sort_by }}
+                    </div>
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-primary mt-4">Filter</button>
+                    </div>
+                </div>
+            </form>
+
+            {% for job in jobs %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h3 class="card-title"><a href="{% url 'jobs:job_detail' job.id %}">{{ job.title }}</a></h3>
+                        <p class="card-text"><strong>Company:</strong> {{ job.company }}</p>
+                        <p class="card-text"><strong>Location:</strong> {{ job.location }}</p>
+                        <p class="card-text"><strong>Status:</strong> {{ job.get_status_display }}</p>
+                        <p class="card-text"><small class="text-muted">{{ job.created_at }}</small></p>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No jobs available.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
