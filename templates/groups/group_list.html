@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Groups{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="content-container">
+            <h2 class="mb-4">Groups</h2>
+            <a href="{% url 'groups:create_group' %}" class="btn btn-primary mb-4">Create New Group</a>
+
+            <form method="get" action="{% url 'groups:group_list' %}" class="mb-4">
+                <div class="form-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search by name" value="{{ query }}">
+                </div>
+                <button class="btn btn-primary" type="submit">Filter</button>
+            </form>
+            
+            {% for group in groups %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h3 class="card-title"><a href="{% url 'groups:group_detail' group.id %}">{{ group.name }}</a></h3>
+                        <p class="card-text">{{ group.description }}</p>
+                        <p class="card-text"><small class="text-muted">Members: {{ group.members.count }}</small></p>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No groups available.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

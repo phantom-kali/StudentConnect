@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ group.name }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="content-container">
+            <h2 class="mb-4">{{ group.name }}</h2>
+            <p>{{ group.description }}</p>
+            <p><strong>Members:</strong> {{ group.members.count }}</p>
+            {% if request.user in group.members.all %}
+                <a href="{% url 'groups:leave_group' group.id %}" class="btn btn-danger">Leave Group</a>
+            {% else %}
+                <a href="{% url 'groups:join_group' group.id %}" class="btn btn-primary">Join Group</a>
+            {% endif %}
+
+            <h3 class="mt-4">Posts</h3>
+            <form method="post" class="mb-4">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Post</button>
+            </form>
+
+            {% for post in posts %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-2">
+                            {% if post.user.profile_picture %}
+                                <img src="{{ post.user.profile_picture.url }}" alt="{{ post.user.username }}" class="profile-picture me-2" style="width: 30px; height: 30px;">
+                            {% else %}
+                                <div class="profile-picture-placeholder me-2" style="width: 30px; height: 30px; font-size: 14px;">
+                                    {{ post.user.username|first|upper }}
+                                </div>
+                            {% endif %}
+                            <h5 class="mb-0">{{ post.user.username }}</h5>
+                        </div>
+                        <p class="card-text">{{ post.content }}</p>
+                        <small class="text-muted">{{ post.created_at }}</small>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
