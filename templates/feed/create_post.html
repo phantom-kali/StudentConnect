@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Create Post - StudentConnect{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="content-container">
+            <h2>Create a New Post</h2>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="{{ form.content.id_for_label }}" class="form-label">Content</label>
+                    {{ form.content }}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.tags.id_for_label }}" class="form-label">Tags</label>
+                    {{ form.tags }}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.media.id_for_label }}" class="form-label">Media</label>
+                    {{ form.media }}
+                </div>
+                <button type="submit" class="btn btn-primary">Create Post</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.user.username }}'s Post - StudentConnect{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="content-container">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        {% if post.user.profile_picture %}
+                            <img src="{{ post.user.profile_picture.url }}" alt="{{ post.user.username }}" class="profile-picture me-2">
+                        {% else %}
+                            <div class="profile-picture-placeholder me-2">{{ post.user.username|first|upper }}</div>
+                        {% endif %}
+                        <h5 class="card-title mb-0">{{ post.user.username }}</h5>
+                        <small class="text-muted ms-auto">{{ post.created_at|timesince }} ago</small>
+                    </div>
+                    <p class="card-text">{{ post.content }}</p>
+                    {% if post.media %}
+                        <img src="{{ post.media.url }}" alt="Post media" class="img-fluid mb-2">
+                    {% endif %}
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <a href="{% url 'feed:like_post' post.id %}" class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-heart{% if request.user in post.likes.all %}-fill{% endif %}"></i> {{ post.likes.count }}
+                            </a>
+                            <button class="btn btn-sm btn-outline-secondary">
+                                <i class="bi bi-chat"></i> {{ post.comments.count }}
+                            </button>
+                        </div>
+                        <small class="text-muted">{{ post.view_count }} views</small>
+                    </div>
+                </div>
+            </div>
+
+            <h4>Comments</h4>
+            {% for comment in comments %}
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-2">
+                            {% if comment.user.profile_picture %}
+                                <img src="{{ comment.user.profile_picture.url }}" alt="{{ comment.user.username }}" class="profile-picture me-2" style="width: 30px; height: 30px;">
+                            {% else %}
+                                <div class="profile-picture-placeholder me-2" style="width: 30px; height: 30px; font-size: 0.8em;">{{ comment.user.username|first|upper }}</div>
+                            {% endif %}
+                            <h6 class="card-subtitle mb-0">{{ comment.user.username }}</h6>
+                            <small class="text-muted ms-auto">{{ comment.created_at|timesince }} ago</small>
+                        </div>
+                        <p class="card-text">{{ comment.content }}</p>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No comments yet.</p>
+            {% endfor %}
+
+            <h4>Add a Comment</h4>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Comment</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

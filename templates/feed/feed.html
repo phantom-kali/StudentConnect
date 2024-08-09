@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load custom_filters %}
+
+{% block title %}Feed - StudentConnect{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 order-lg-1 order-2">
+        <div class="content-container mb-4">
+            <h2>Feed</h2>
+            <ul class="nav nav-tabs mb-3">
+                <li class="nav-item">
+                    <a class="nav-link {% if not feed_type %}active{% endif %}" href="{% url 'feed:index' %}">All</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if feed_type == 'following' %}active{% endif %}" href="{% url 'feed:following' %}">Following</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if feed_type == 'trending' %}active{% endif %}" href="{% url 'feed:trending' %}">Trending</a>
+                </li>
+            </ul>
+            {% for post in posts %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-2">
+                            {% if post.user.profile_picture %}
+                                <img src="{{ post.user.profile_picture.url }}" alt="{{ post.user.username }}" class="profile-picture me-2">
+                            {% else %}
+                                <div class="profile-picture-placeholder me-2">{{ post.user.username|first|upper }}</div>
+                            {% endif %}
+                            <h5 class="card-title mb-0">
+                                <a href="{% url 'accounts:profile' user_id=post.user.id %}" class="text-decoration-none text-dark">{{ post.user.username }}</a>
+                            </h5>
+                            <small class="text-muted ms-auto">{{ post.created_at|timesince }} ago</small>
+                        </div>
+                        <p class="card-text">{{ post.content }}</p>
+                        {% if post.media %}
+                            <div class="media-container" style="max-width: 100%; max-height: 400px; overflow: hidden;">
+                                {% if post.media.name|lower|endswith:'.mp4' or post.media.name|lower|endswith:'.avi' or post.media.name|lower|endswith:'.mov' %}
+                                    <video controls style="max-width: 100%; max-height: 400px; object-fit: contain;">
+                                        <source src="{{ post.media.url }}" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                {% else %}
+                                    <img src="{{ post.media.url }}" alt="Post media" style="max-width: 100%; max-height: 400px; object-fit: contain;">
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                        <div class="d-flex justify-content-between align-items-center mt-2">
+                            <div>
+                                <a href="{% url 'feed:like_post' post.id %}" class="btn btn-sm btn-outline-primary">
+                                    <i class="bi bi-heart{% if request.user in post.likes.all %}-fill{% endif %}"></i> {{ post.likes.count }}
+                                </a>
+                                <a href="{% url 'feed:post_detail' post.id %}" class="btn btn-sm btn-outline-secondary">
+                                    <i class="bi bi-chat"></i> {{ post.comments.count }}
+                                </a>
+                            </div>
+                            <small class="text-muted">{{ post.view_count }} views</small>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No posts to display.</p>
+            {% endfor %}
+            {% if posts.has_other_pages %}
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        {% if posts.has_previous %}
+                            <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">Previous</a></li>
+                        {% endif %}
+                        {% for i in posts.paginator.page_range %}
+                            <li class="page-item {% if posts.number == i %}active{% endif %}"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                        {% endfor %}
+                        {% if posts.has_next %}
+                            <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">Next</a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-lg-4 order-lg-2 order-1 mb-4">
+        <div class="content-container sticky-top" style="top: 20px;">
+            <h3>Create a Post</h3>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Post</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .nav-tabs .nav-link {
+        color: #495057;
+    }
+    .nav-tabs .nav-link.active {
+        font-weight: bold;
+    }
+</style>
+{% endblock %}

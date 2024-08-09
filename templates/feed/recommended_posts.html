@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Recommended Posts{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="content-container">
+            <h2 class="mb-4">Recommended Posts</h2>
+            {% for post in posts %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-2">
+                            {% if post.user.profile_picture %}
+                                <img src="{{ post.user.profile_picture.url }}" alt="{{ post.user.username }}" class="profile-picture me-2" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;">
+                            {% else %}
+                                <div class="profile-picture-placeholder me-2" style="width: 40px; height: 40px; background-color: #ccc; display: flex; align-items: center; justify-content: center; border-radius: 50%;">
+                                    {{ post.user.username|first|upper }}
+                                </div>
+                            {% endif %}
+                            <h5 class="mb-0">{{ post.user.username }}</h5>
+                        </div>
+                        <p class="card-text">{{ post.content|truncatewords:30 }}</p>
+                        {% if post.media %}
+                        <div class="post-media mb-3">
+                            {% if post.media.name|lower|endswith:'.jpg' or post.media.name|lower|endswith:'.jpeg' or post.media.name|lower|endswith:'.png' or post.media.name|lower|endswith:'.gif' %}
+                                <img src="{{ post.media.url }}" alt="Post media" class="img-fluid" style="max-height: 200px; width: auto; object-fit: contain;">
+                            {% elif post.media.name|lower|endswith:'.mp4' or post.media.name|lower|endswith:'.webm' or post.media.name|lower|endswith:'.ogg' %}
+                                <video controls class="img-fluid" style="max-height: 200px; width: auto;">
+                                    <source src="{{ post.media.url }}" type="video/{{ post.media.name|split:'.'|last }}">
+                                    Your browser does not support the video tag.
+                                </video>
+                            {% else %}
+                                <a href="{{ post.media.url }}" target="_blank">View attached file</a>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                        <p class="card-text"><small class="text-muted">Posted on {{ post.created_at }}</small></p>
+                        <a href="{% url 'feed:post_detail' post.id %}" class="btn btn-primary">Read more</a>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No recommendations available at the moment.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
