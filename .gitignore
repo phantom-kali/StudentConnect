@@ -3,4 +3,5 @@ __pycache__/
 db.sqlite3
 media/
 static/
-
+commit_helper.sh
+.VSCodeCounter
