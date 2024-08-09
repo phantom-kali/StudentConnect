@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Dining Halls{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="content-container">
+            <h2 class="mb-4">Dining Halls</h2>
+            {% for dining_hall in dining_halls %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h3 class="card-title"><a href="{% url 'dining:dining_hall_detail' dining_hall.id %}">{{ dining_hall.name }}</a></h3>
+                        <p class="card-text">Location: {{ dining_hall.location }}</p>
+                        <p class="card-text">Hours: {{ dining_hall.hours }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
