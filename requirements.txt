@@ -2,3 +2,4 @@ django
 djangorestframework
 python-magic
 pillow
+django-cors-headers
