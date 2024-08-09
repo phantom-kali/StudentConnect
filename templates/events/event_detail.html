@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ event.title }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="content-container">
+            <h2 class="mb-4">{{ event.title }}</h2>
+            <p>{{ event.description }}</p>
+            <p><strong>Location:</strong> {{ event.location }}</p>
+            <p><strong>Start:</strong> {{ event.start_time }}</p>
+            <p><strong>End:</strong> {{ event.end_time }}</p>
+            <p><strong>Created by:</strong> {{ event.creator.username }}</p>
+            <p><strong>Attendees:</strong> {{ event.attendees.count }}</p>
+
+            {% if is_attending %}
+                <a href="{% url 'events:unattend_event' event.id %}" class="btn btn-danger">Unattend</a>
+            {% else %}
+                <a href="{% url 'events:attend_event' event.id %}" class="btn btn-primary">Attend</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Events{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="content-container">
+            <h2 class="mb-4">Events</h2>
+            <a href="{% url 'events:create_event' %}" class="btn btn-primary mb-4">Create New Event</a>
+            
+            <form method="get" action="{% url 'events:event_list' %}" class="mb-4">
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <input type="text" name="q" class="form-control" placeholder="Search by title" value="{{ query }}">
+                    </div>
+                    <div class="col-md-4">
+                        <input type="date" name="start_date" class="form-control" placeholder="Start Date" value="{{ start_date }}">
+                    </div>
+                    <div class="col-md-4">
+                        <input type="date" name="end_date" class="form-control" placeholder="End Date" value="{{ end_date }}">
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit">Filter</button>
+            </form>
+            
+            {% for event in events %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h3 class="card-title"><a href="{% url 'events:event_detail' event.id %}">{{ event.title }}</a></h3>
+                        <p class="card-text">{{ event.description|truncatewords:30 }}</p>
+                        <p class="card-text"><small class="text-muted">{{ event.start_time }} - {{ event.end_time }}</small></p>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No events available.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
