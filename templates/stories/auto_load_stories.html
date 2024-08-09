@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}All Stories{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="content-container">
+            <h2 class="mb-4">All Stories</h2>
+            <div id="storyCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+                <div class="carousel-inner">
+                    {% for user, user_stories in users_with_stories.items %}
+                        {% for story in user_stories %}
+                            <div class="carousel-item {% if forloop.first and forloop.parentloop.first %}active{% endif %}">
+                                <div class="row align-items-center">
+                                    <div class="col-md-4">
+                                        <div class="story-user-info">
+                                            {% if user.profile_picture %}
+                                                <img src="{{ user.profile_picture.url }}" alt="{{ user.username }}'s profile picture" class="story-user-avatar">
+                                            {% else %}
+                                                <div class="story-user-avatar default-avatar">
+                                                    {{ user.username|first|upper }}
+                                                </div>
+                                            {% endif %}
+                                            <h5 class="story-user-name">{{ user.username }}</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        {% if story.content.url|slice:"-4:" == '.mp4' %}
+                                            <video class="d-block w-100" controls>
+                                                <source src="{{ story.content.url }}" type="video/mp4" preload="metadata">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        {% else %}
+                                            <img src="{{ story.content.url }}" class="d-block w-100" alt="Story content">
+                                        {% endif %}
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <p>{{ story.caption }}</p>
+                                            <p><small>Posted: {{ story.created_at|date:"M d, Y H:i" }}</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#storyCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#storyCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .story-user-info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .story-user-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 15px;
+    }
+    .story-user-avatar.default-avatar {
+        background-color: #007bff;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        font-weight: bold;
+    }
+    .story-user-name {
+        margin: 0;
+        font-size: 18px;
+        font-weight: bold;
+    }
+</style>
+{% endblock %}

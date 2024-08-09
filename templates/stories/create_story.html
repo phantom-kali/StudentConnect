@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Create a Story{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="content-container">
+            <h2 class="mb-4">Create a Story</h2>
+            <form method="post" enctype="multipart/form-data" id="storyForm">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="{{ form.content.id_for_label }}" class="form-label">Content</label>
+                    {{ form.content }}
+                </div>
+                <div class="mb-3">
+                    <div id="preview" class="d-none mb-3">
+                        <img id="imagePreview" class="img-fluid d-none" alt="Image preview">
+                        <video id="videoPreview" class="img-fluid d-none" controls></video>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.caption.id_for_label }}" class="form-label">Caption</label>
+                    {{ form.caption }}
+                </div>
+                <button type="submit" class="btn btn-primary">Post Story</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.getElementById('{{ form.content.id_for_label }}').addEventListener('change', function(event) {
+        var file = event.target.files[0];
+        var preview = document.getElementById('preview');
+        var imagePreview = document.getElementById('imagePreview');
+        var videoPreview = document.getElementById('videoPreview');
+
+        preview.classList.remove('d-none');
+        imagePreview.classList.add('d-none');
+        videoPreview.classList.add('d-none');
+
+        if (file.type.startsWith('image/')) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                imagePreview.src = e.target.result;
+                imagePreview.classList.remove('d-none');
+            }
+            reader.readAsDataURL(file);
+        } else if (file.type.startsWith('video/')) {
+            videoPreview.src = URL.createObjectURL(file);
+            videoPreview.classList.remove('d-none');
+        }
+    });
+</script>
+{% endblock %}

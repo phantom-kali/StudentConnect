@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block title %}Stories{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="content-container">
+            <h2 class="mb-4">Stories</h2>
+            <a href="{% url 'stories:create_story' %}" class="btn btn-primary mb-4">Create a Story</a>
+            
+            <form method="get" class="mb-4">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search stories..." value="{{ query|default:'' }}">
+                    <select name="filter" class="form-select">
+                        <option value="">All Stories</option>
+                        <option value="unviewed" {% if filter_type == 'unviewed' %}selected{% endif %}>Unviewed Stories</option>
+                    </select>
+                    <button type="submit" class="btn btn-outline-secondary">Search</button>
+                </div>
+            </form>
+
+            <a href="{% url 'stories:auto_load_stories' %}" class="btn btn-primary mb-4">View All Stories</a>
+            
+            <div class="story-list">
+                {% for user, stories in user_stories.items %}
+                    <div class="story-item">
+                        <div class="story-avatar">
+                            {% if user.profile_picture %}
+                                <img src="{{ user.profile_picture.url }}" alt="{{ user.username }}'s profile picture">
+                            {% else %}
+                                <div class="default-avatar">
+                                    {{ user.username|first|upper }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="story-info">
+                            <h5>{{ user.username }}</h5>
+                            <p>{{ stories|length }} stories</p>
+                            <a href="{% url 'stories:user_stories' user.username %}" class="btn btn-sm btn-primary">View Stories</a>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>No active stories at the moment.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .story-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .story-item {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 300px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+    }
+    .story-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 15px;
+    }
+    .story-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .default-avatar {
+        width: 100%;
+        height: 100%;
+        background-color: #007bff;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        font-weight: bold;
+    }
+    .story-info {
+        flex-grow: 1;
+    }
+    .story-info h5 {
+        margin: 0;
+        font-size: 16px;
+    }
+    .story-info p {
+        margin: 5px 0;
+        font-size: 14px;
+        color: #666;
+    }
+</style>
+{% endblock %}
