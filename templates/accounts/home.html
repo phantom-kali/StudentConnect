@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome to StudentConnect{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="content-container">
+            <h1 class="display-4 mb-4 text-center">Welcome to StudentConnect</h1>
+            <p class="lead text-center">Connect with fellow students, join groups, find events, and more!</p>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="content-container">
+            <h3><i class="bi bi-people"></i> Join Groups</h3>
+            <p>Find and join groups based on your interests or create your own.</p>
+            <a href="{% url 'groups:group_list' %}" class="btn btn-primary">Explore Groups</a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="content-container">
+            <h3><i class="bi bi-calendar-event"></i> Discover Events</h3>
+            <p>Find upcoming events on campus or create your own event.</p>
+            <a href="{% url 'events:event_list' %}" class="btn btn-primary">View Events</a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="content-container">
+            <h3><i class="bi bi-chat-quote"></i> Share Confessions</h3>
+            <p>Share your thoughts anonymously or read others' confessions.</p>
+            <a href="{% url 'confessions:confession_list' %}" class="btn btn-primary">Read Confessions</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ profile_user.username }}'s Followers{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="content-container">
+            <h2 class="mb-4">{{ profile_user.username }}'s Followers</h2>
+            {% if followers_count == 0 %}
+                <p>No followers yet.</p>
+            {% else %}
+                <ul class="list-group">
+                    {% for follower in page_obj %}
+                        <li class="list-group-item">
+                            <a href="{% url 'accounts:profile' follower.id %}">{{ follower.username }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <div class="mt-4">
+                    {% if page_obj.has_previous %}
+                        <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                    {% endif %}
+                    <span class="mx-2">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">Next</a>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

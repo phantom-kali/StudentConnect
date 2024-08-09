@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ profile_user.username }}'s Profile{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="content-container">
+            <h2 class="mb-4">{{ profile_user.username }}'s Profile</h2>
+            <div class="mb-4 text-center">
+                {% if profile_user.profile_picture %}
+                    <img src="{{ profile_user.profile_picture.url }}" alt="{{ profile_user.username }}" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover;">
+                {% else %}
+                    <div class="profile-picture-placeholder mx-auto" style="width: 150px; height: 150px; font-size: 48px;">
+                        {{ profile_user.username|first|upper }}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <div class="mb-4">
+                <p><strong>Bio:</strong> {{ profile_user.bio }}</p>
+                <p><strong>Location:</strong> {{ profile_user.location }}</p>
+                <p>
+                    <a href="{% url 'accounts:followers_list' profile_user.id %}" class="btn btn-link p-0"><strong>Followers:</strong> {{ followers_count }}</a> |
+                    <a href="{% url 'accounts:following_list' profile_user.id %}" class="btn btn-link p-0"><strong>Following:</strong> {{ following_count }}</a> |
+                    <a href="{% url 'accounts:posts_list' profile_user.id %}" class="btn btn-link p-0"><strong>Posts:</strong> {{ posts_count }}</a>
+                </p>
+            </div>
+
+            {% if is_own_profile %}
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Update Profile</button>
+                </form>
+            {% else %}
+                {% if profile_user in request.user.following.all %}
+                    <a href="{% url 'accounts:unfollow_user' profile_user.username %}" class="btn btn-sm btn-outline-secondary">Unfollow</a>
+                {% else %}
+                    <a href="{% url 'accounts:follow_user' profile_user.username %}" class="btn btn-sm btn-outline-primary">Follow</a>
+                {% endif %}
+                <a href="{% url 'messaging:start_conversation' profile_user.username %}" class="btn btn-sm btn-outline-info">Message</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

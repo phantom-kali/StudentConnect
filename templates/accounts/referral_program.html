@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Referral Program</h2>
+<p>Your referral code: {{ user.referral_code }}</p>
+<p>Number of referrals: {{ user.referral_count }}</p>
+<p>Share this code with your friends to earn premium access!</p>
+{% endblock %}
