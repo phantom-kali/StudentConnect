@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Your Notifications{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="content-container">
+            <h2 class="mb-4">Your Notifications</h2>
+            {% for notification in notifications %}
+                <div class="card mb-3 {% if not notification.is_read %}border-primary{% endif %}">
+                    <div class="card-body">
+                        {% if notification.link %}
+                            <a href="{{ notification.link }}" class="text-decoration-none">{{ notification.content }}</a>
+                        {% else %}
+                            {{ notification.content }}
+                        {% endif %}
+                        <small class="text-muted d-block">{{ notification.created_at|date:"M d, Y H:i" }}</small>
+                        {% if not notification.is_read %}
+                            <a href="{% url 'notifications:mark_as_read' notification.id %}" class="btn btn-sm btn-outline-primary mt-2">Mark as read</a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% empty %}
+                <p>No notifications.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
