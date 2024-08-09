@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Messages for {{ conversation.job.title }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="content-container">
+            <h2 class="mb-4">Messages for {{ conversation_title }}</h2>
+            <div class="chat-container">
+                {% for message in messages %}
+                    <div class="message {% if message.sender == request.user %}message-sent{% else %}message-received{% endif %}">
+                        <div class="message-content">{{ message.content }}</div>
+                        <div class="message-info">
+                            <span>{{ message.sender.username }}</span>
+                            <span>{{ message.created_at|date:"M d, H:i" }}</span>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>No messages yet.</p>
+                {% endfor %}
+            </div>
+            <form method="post" class="message-form mt-3">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input type="text" name="content" class="form-control message-input" placeholder="Type your message here" required>
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary send-button">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

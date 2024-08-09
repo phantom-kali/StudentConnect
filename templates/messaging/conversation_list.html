@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Your Conversations{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="content-container">
+            <h2 class="mb-4">Your Conversations</h2>
+            <div class="conversation-list">
+                {% for conversation in conversations %}
+                    <div class="conversation-item">
+                        <a href="{% url 'messaging:conversation_detail' conversation.id %}" class="text-decoration-none">
+                            <div class="conversation-title">
+                                {% for participant in conversation.participants.all %}
+                                    {% if participant != request.user %}
+                                        {{ participant.username }}
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            <div class="text-muted">
+                                {% if conversation.job %}
+                                    Job: {{ conversation.job.title }}
+                                {% endif %}
+                            </div>
+                            <small class="text-muted">Last updated: {{ conversation.updated_at|date:"M d, Y H:i" }}</small>
+                        </a>
+                    </div>
+                {% empty %}
+                    <p>You have no conversations yet.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
