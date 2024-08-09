@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Moderate Confessions{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="content-container">
+            <h2 class="mb-4">Moderate Confessions</h2>
+            {% for confession in confessions %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <p class="card-text">{{ confession.content }}</p>
+                        <small class="text-muted">Submitted: {{ confession.created_at }}</small>
+                        <form method="post" class="mt-2">
+                            {% csrf_token %}
+                            <input type="hidden" name="confession_id" value="{{ confession.id }}">
+                            <button type="submit" name="action" value="approve" class="btn btn-success btn-sm">Approve</button>
+                            <button type="submit" name="action" value="reject" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to reject and delete this confession?');">Reject</button>
+                        </form>
+                    </div>
+                </div>
+            {% empty %}
+                <p class="text-center">No confessions to moderate.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
