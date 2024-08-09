@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}StudentConnect{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <style>
+        /* Custom styles for X-inspired design */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f7f9fa;
+        }
+
+        .navbar {
+            background-color: #000;
+            padding: 0.5rem 1rem;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            color: #fff !important;
+        }
+
+        .nav-link {
+            color: #fff !important;
+            padding: 0.5rem 1rem;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .content-container {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .profile-picture {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .profile-picture-placeholder {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                position: fixed;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                padding: 1rem;
+                background-color: #000;
+                z-index: 1000;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease-in-out;
+            }
+
+            .navbar-collapse.show {
+                transform: translateX(0);
+            }
+        }
+
+
+
+        :root {
+            --bg-color: #f7f9fa;
+            --text-color: #333;
+            --container-bg: #fff;
+            --container-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: #f0f0f0;
+            --container-bg: #2a2a2a;
+            --container-shadow: 0 1px 3px rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .content-container {
+            background-color: var(--container-bg);
+            box-shadow: var(--container-shadow);
+        }
+
+        .chat-container {
+            max-height: 500px;
+            overflow-y: auto;
+            background-color: #e5ddd5;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .message {
+            max-width: 70%;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            word-wrap: break-word;
+        }
+
+        .message-sent {
+            background-color: #dcf8c6;
+            margin-left: auto;
+        }
+
+        .message-received {
+            background-color: #ffffff;
+        }
+
+        .message-info {
+            font-size: 0.8em;
+            color: #888;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .conversation-list {
+            background-color: #ffffff;
+            border-radius: 10px;
+        }
+
+        .conversation-item {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 15px;
+            transition: background-color 0.3s;
+        }
+
+        .conversation-item:hover {
+            background-color: #f5f5f5;
+        }
+
+        .conversation-item:last-child {
+            border-bottom: none;
+        }
+
+        .conversation-title {
+            font-weight: bold;
+            color: #000;
+        }
+
+        .message-form {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .message-input {
+            border-radius: 20px;
+            border: none;
+            padding: 10px 15px;
+        }
+
+        .send-button {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        form input,
+        form select {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home' %}">StudentConnect</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'accounts:home' %}"><i
+                                class="bi bi-house-door"></i> Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'feed:index' %}"><i class="bi bi-rss"></i>
+                            Feed</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'groups:group_list' %}"><i
+                                class="bi bi-people"></i> Groups</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'events:event_list' %}"><i
+                                class="bi bi-calendar-event"></i> Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'marketplace:item_list' %}"><i
+                                class="bi bi-shop"></i> Marketplace</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'jobs:job_list' %}"><i
+                                class="bi bi-briefcase"></i> Jobs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'confessions:confession_list' %}"><i
+                                class="bi bi-chat-quote"></i> Confessions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'dining:dining_hall_list' %}"><i
+                                class="bi bi-cup-straw"></i> Dining</a></li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'stories:view_stories' %}"><i
+                                class="bi bi-camera"></i> Stories</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'messaging:conversation_list' %}"><i
+                                class="bi bi-envelope"></i> Messages</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'notifications:notifications' %}"><i
+                                class="bi bi-bell"></i> Notifications</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'search:search' %}"><i
+                                class="bi bi-search"></i> Search</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            {% if user.profile_picture %}
+                            <img src="{{ user.profile_picture.url }}" alt="{{ user.username }}" class="profile-picture">
+                            {% else %}
+                            <div class="profile-picture-placeholder">
+                                {{ user.username|first|upper }}
+                            </div>
+                            {% endif %}
+                            Account
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{% url 'accounts:profile' request.user.id %}">Profile</a></li>
+                            <li><a class="dropdown-item" href="{% url 'accounts:referral_program' %}">Referral
+                                    Program</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mt-4">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Custom JavaScript for mobile menu
+        document.addEventListener('DOMContentLoaded', function () {
+            var navbarToggler = document.querySelector('.navbar-toggler');
+            var navbarCollapse = document.querySelector('.navbar-collapse');
+
+            navbarToggler.addEventListener('click', function () {
+                navbarCollapse.classList.toggle('show');
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function (event) {
+                var isClickInside = navbarCollapse.contains(event.target) || navbarToggler.contains(event.target);
+                if (!isClickInside && navbarCollapse.classList.contains('show')) {
+                    navbarCollapse.classList.remove('show');
+                }
+            });
+        });
+    </script>
+    {% block extra_js %}
+    {% endblock %}
+</body>
+
+</html>
