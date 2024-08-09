@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Results for "{{ query }}"{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="content-container">
+            <form method="get" action="{% url 'search:search' %}" class="mb-4">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search..." value="{{ query }}">
+                    <select name="filter_type" class="form-select">
+                        <option value="all" {% if filter_type == 'all' %}selected{% endif %}>All</option>
+                        <option value="posts" {% if filter_type == 'posts' %}selected{% endif %}>Posts</option>
+                        <option value="groups" {% if filter_type == 'groups' %}selected{% endif %}>Groups</option>
+                        <option value="events" {% if filter_type == 'events' %}selected{% endif %}>Events</option>
+                        <option value="jobs" {% if filter_type == 'jobs' %}selected{% endif %}>Jobs</option>
+                    </select>
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </form>
+
+            <h2 class="mb-4">Search Results for "{{ query }}"</h2>
+
+            {% if filter_type == 'all' or filter_type == 'posts' %}
+                <h3>Posts</h3>
+                {% for post in posts %}
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <p class="card-text">{{ post.content|truncatewords:30 }}</p>
+                            <small class="text-muted">By {{ post.user.username }}</small>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>No posts found.</p>
+                {% endfor %}
+            {% endif %}
+
+            {% if filter_type == 'all' or filter_type == 'groups' %}
+                <h3 class="mt-4">Groups</h3>
+                {% for group in groups %}
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h4 class="card-title"><a href="{% url 'groups:group_detail' group.id %}">{{ group.name }}</a></h4>
+                            <p class="card-text">{{ group.description|truncatewords:30 }}</p>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>No groups found.</p>
+                {% endfor %}
+            {% endif %}
+
+            {% if filter_type == 'all' or filter_type == 'events' %}
+                <h3 class="mt-4">Events</h3>
+                {% for event in events %}
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h4 class="card-title"><a href="{% url 'events:event_detail' event.id %}">{{ event.title }}</a></h4>
+                            <p class="card-text">{{ event.description|truncatewords:30 }}</p>
+                            <p class="card-text"><small class="text-muted">{{ event.start_time }}</small></p>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>No events found.</p>
+                {% endfor %}
+            {% endif %}
+
+            {% if filter_type == 'all' or filter_type == 'jobs' %}
+                <h3 class="mt-4">Jobs</h3>
+                {% for job in jobs %}
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h4 class="card-title"><a href="{% url 'jobs:job_detail' job.id %}">{{ job.title }}</a></h4>
+                            <p class="card-text">{{ job.company }} - {{ job.location }}</p>
+                            <p class="card-text">{{ job.description|truncatewords:30 }}</p>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>No jobs found.</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
