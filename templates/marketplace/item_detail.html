@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ item.title }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="content-container">
+            <h2 class="mb-4">{{ item.title }}</h2>
+            <p>{{ item.description }}</p>
+            <p><strong>Price:</strong> ${{ item.price }}</p>
+            <p><strong>Seller:</strong> {{ item.seller.username }}</p>
+            {% if item.image %}
+                <img src="{{ item.image.url }}" alt="{{ item.title }}" class="img-fluid mb-3">
+            {% endif %}
+            <p><strong>Posted:</strong> {{ item.created_at }}</p>
+            {% if user != item.seller %}
+                <a href="{% url 'messaging:start_conversation' item.seller.username %}" class="btn btn-primary">Contact Seller</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
