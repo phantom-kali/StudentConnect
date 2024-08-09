@@ -1,0 +1,197 @@
+Date : 2024-08-08 11:19:36
+Directory : /home/fidel/Websites/studentconnect/apps
+Total : 133 files,  2291 codes, 54 comments, 592 blanks, all 2937 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| Python   |        133 |      2,291 |         54 |        592 |      2,937 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                       | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                          |        133 |      2,291 |         54 |        592 |      2,937 |
+| . (Files)                                                                                                                  |          1 |         15 |          1 |          6 |         22 |
+| accounts                                                                                                                   |         13 |        370 |          4 |         83 |        457 |
+| accounts (Files)                                                                                                           |          8 |        270 |          2 |         63 |        335 |
+| accounts/management                                                                                                        |          2 |         31 |          0 |          6 |         37 |
+| accounts/management/commands                                                                                               |          2 |         31 |          0 |          6 |         37 |
+| accounts/migrations                                                                                                        |          3 |         69 |          2 |         14 |         85 |
+| confessions                                                                                                                |         11 |        127 |          3 |         43 |        173 |
+| confessions (Files)                                                                                                        |          8 |         91 |          1 |         29 |        121 |
+| confessions/migrations                                                                                                     |          3 |         36 |          2 |         14 |         52 |
+| dining                                                                                                                     |         11 |        144 |          3 |         37 |        184 |
+| dining (Files)                                                                                                             |          8 |         91 |          1 |         23 |        115 |
+| dining/migrations                                                                                                          |          3 |         53 |          2 |         14 |         69 |
+| events                                                                                                                     |         10 |        128 |          2 |         37 |        167 |
+| events (Files)                                                                                                             |          8 |        104 |          1 |         29 |        134 |
+| events/migrations                                                                                                          |          2 |         24 |          1 |          8 |         33 |
+| feed                                                                                                                       |         15 |        433 |          6 |         93 |        532 |
+| feed (Files)                                                                                                               |          8 |        249 |          2 |         63 |        314 |
+| feed/migrations                                                                                                            |          5 |        176 |          4 |         26 |        206 |
+| feed/templatetags                                                                                                          |          2 |          8 |          0 |          4 |         12 |
+| groups                                                                                                                     |         11 |        151 |          3 |         44 |        198 |
+| groups (Files)                                                                                                             |          8 |        106 |          1 |         30 |        137 |
+| groups/migrations                                                                                                          |          3 |         45 |          2 |         14 |         61 |
+| jobs                                                                                                                       |         11 |        297 |          8 |         71 |        376 |
+| jobs (Files)                                                                                                               |          8 |        245 |          6 |         57 |        308 |
+| jobs/migrations                                                                                                            |          3 |         52 |          2 |         14 |         68 |
+| marketplace                                                                                                                |         10 |        121 |          5 |         33 |        159 |
+| marketplace (Files)                                                                                                        |          8 |         99 |          4 |         25 |        128 |
+| marketplace/migrations                                                                                                     |          2 |         22 |          1 |          8 |         31 |
+| messaging                                                                                                                  |         12 |        154 |          8 |         49 |        211 |
+| messaging (Files)                                                                                                          |          8 |         98 |          5 |         29 |        132 |
+| messaging/migrations                                                                                                       |          4 |         56 |          3 |         20 |         79 |
+| notifications                                                                                                              |         10 |         85 |          3 |         28 |        116 |
+| notifications (Files)                                                                                                      |          7 |         50 |          1 |         14 |         65 |
+| notifications/migrations                                                                                                   |          3 |         35 |          2 |         14 |         51 |
+| search                                                                                                                     |          8 |         62 |          3 |         17 |         82 |
+| search (Files)                                                                                                             |          7 |         62 |          3 |         16 |         81 |
+| search/migrations                                                                                                          |          1 |          0 |          0 |          1 |          1 |
+| stories                                                                                                                    |         10 |        204 |          5 |         51 |        260 |
+| stories (Files)                                                                                                            |          8 |        171 |          4 |         43 |        218 |
+| stories/migrations                                                                                                         |          2 |         33 |          1 |          8 |         42 |
++----------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                                                                   | language | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| /home/fidel/Websites/studentconnect/apps/accounts/__init__.py                                                              | Python   |          0 |          0 |          1 |          1 |
+| /home/fidel/Websites/studentconnect/apps/accounts/admin.py                                                                 | Python   |         10 |          0 |          2 |         12 |
+| /home/fidel/Websites/studentconnect/apps/accounts/apps.py                                                                  | Python   |          4 |          0 |          3 |          7 |
+| /home/fidel/Websites/studentconnect/apps/accounts/forms.py                                                                 | Python   |         26 |          0 |          8 |         34 |
+| /home/fidel/Websites/studentconnect/apps/accounts/management/commands/notify_jpb_deadline.py                               | Python   |         22 |          0 |          4 |         26 |
+| /home/fidel/Websites/studentconnect/apps/accounts/management/commands/update_referral_codes.py                             | Python   |          9 |          0 |          2 |         11 |
+| /home/fidel/Websites/studentconnect/apps/accounts/migrations/0001_initial.py                                               | Python   |         49 |          1 |          7 |         57 |
+| /home/fidel/Websites/studentconnect/apps/accounts/migrations/0002_user_followers_alter_user_bio.py                         | Python   |         20 |          1 |          6 |         27 |
+| /home/fidel/Websites/studentconnect/apps/accounts/migrations/__init__.py                                                   | Python   |          0 |          0 |          1 |          1 |
+| /home/fidel/Websites/studentconnect/apps/accounts/models.py                                                                | Python   |         50 |          0 |         11 |         61 |
+| /home/fidel/Websites/studentconnect/apps/accounts/tests.py                                                                 | Python   |          1 |          1 |          2 |          4 |
+| /home/fidel/Websites/studentconnect/apps/accounts/urls.py                                                                  | Python   |         17 |          0 |          3 |         20 |
+| /home/fidel/Websites/studentconnect/apps/accounts/views.py                                                                 | Python   |        162 |          1 |         33 |        196 |
+| /home/fidel/Websites/studentconnect/apps/confessions/__init__.py                                                           | Python   |          0 |          0 |          1 |          1 |
+| /home/fidel/Websites/studentconnect/apps/confessions/admin.py                                                              | Python   |          6 |          0 |          2 |          8 |
+| /home/fidel/Websites/studentconnect/apps/confessions/apps.py                                                               | Python   |          4 |          0 |          3 |          7 |
+| /home/fidel/Websites/studentconnect/apps/confessions/forms.py                                                              | Python   |         12 |          0 |          5 |         17 |
+| /home/fidel/Websites/studentconnect/apps/confessions/migrations/0001_initial.py                                            | Python   |         16 |          1 |          7 |         24 |
+| /home/fidel/Websites/studentconnect/apps/confessions/migrations/0002_confession_user.py                                    | Python   |         20 |          1 |          6 |         27 |
+| /home/fidel/Websites/studentconnect/apps/confessions/migrations/__init__.py                                                | Python   |          0 |          0 |          1 |          1 |
+| /home/fidel/Websites/studentconnect/apps/confessions/models.py                                                             | Python   |          9 |          0 |          4 |         13 |
+| /home/fidel/Websites/studentconnect/apps/confessions/tests.py                                                              | Python   |          1 |          1 |          2 |          4 |
+| /home/fidel/Websites/studentconnect/apps/confessions/urls.py                                                               | Python   |          8 |          0 |          2 |         10 |
+| /home/fidel/Websites/studentconnect/apps/confessions/views.py                                                              | Python   |         51 |          0 |         10 |         61 |
+| /home/fidel/Websites/studentconnect/apps/dining/__init__.py                                                                | Python   |          0 |          0 |          1 |          1 |
+| /home/fidel/Websites/studentconnect/apps/dining/admin.py                                                                   | Python   |         13 |          0 |          3 |         16 |
+| /home/fidel/Websites/studentconnect/apps/dining/apps.py                                                                    | Python   |          4 |          0 |          3 |          7 |
+| /home/fidel/Websites/studentconnect/apps/dining/forms.py                                                                   | Python   |          6 |          0 |          1 |          7 |
+| /home/fidel/Websites/studentconnect/apps/dining/migrations/0001_initial.py                                                 | Python   |         41 |          1 |          7 |         49 |
+| /home/fidel/Websites/studentconnect/apps/dining/migrations/0002_alter_dininghallreview_comment.py                          | Python   |         12 |          1 |          6 |         19 |
+| /home/fidel/Websites/studentconnect/apps/dining/migrations/__init__.py                                                     | Python   |          0 |          0 |          1 |          1 |
+| /home/fidel/Websites/studentconnect/apps/dining/models.py                                                                  | Python   |         24 |          0 |          6 |         30 |
+| /home/fidel/Websites/studentconnect/apps/dining/tests.py                                                                   | Python   |          1 |          1 |          2 |          4 |
+| /home/fidel/Websites/studentconnect/apps/dining/urls.py                                                                    | Python   |          8 |          0 |          2 |         10 |
+| /home/fidel/Websites/studentconnect/apps/dining/views.py                                                                   | Python   |         35 |          0 |          5 |         40 |
+| /home/fidel/Websites/studentconnect/apps/events/__init__.py                                                                | Python   |          0 |          0 |          1 |          1 |
+| /home/fidel/Websites/studentconnect/apps/events/admin.py                                                                   | Python   |          8 |          0 |          1 |          9 |
+| /home/fidel/Websites/studentconnect/apps/events/apps.py                                                                    | Python   |          4 |          0 |          3 |          7 |
+| /home/fidel/Websites/studentconnect/apps/events/forms.py                                                                   | Python   |         10 |          0 |          1 |         11 |
+| /home/fidel/Websites/studentconnect/apps/events/migrations/0001_initial.py                                                 | Python   |         24 |          1 |          7 |         32 |
+| /home/fidel/Websites/studentconnect/apps/events/migrations/__init__.py                                                     | Python   |          0 |          0 |          1 |          1 |
+| /home/fidel/Websites/studentconnect/apps/events/models.py                                                                  | Python   |         13 |          0 |          2 |         15 |
+| /home/fidel/Websites/studentconnect/apps/events/tests.py                                                                   | Python   |          1 |          1 |          2 |          4 |
+| /home/fidel/Websites/studentconnect/apps/events/urls.py                                                                    | Python   |         10 |          0 |          2 |         12 |
+| /home/fidel/Websites/studentconnect/apps/events/views.py                                                                   | Python   |         58 |          0 |         17 |         75 |
+| /home/fidel/Websites/studentconnect/apps/feed/__init__.py                                                                  | Python   |          0 |          0 |          1 |          1 |
+| /home/fidel/Websites/studentconnect/apps/feed/admin.py                                                                     | Python   |         20 |          0 |          4 |         24 |
+| /home/fidel/Websites/studentconnect/apps/feed/apps.py                                                                      | Python   |          4 |          0 |          3 |          7 |
+| /home/fidel/Websites/studentconnect/apps/feed/forms.py                                                                     | Python   |         32 |          0 |          9 |         41 |
+| /home/fidel/Websites/studentconnect/apps/feed/migrations/0001_initial.py                                                   | Python   |         33 |          1 |          7 |         41 |
+| /home/fidel/Websites/studentconnect/apps/feed/migrations/0002_alter_comment_content_alter_post_content.py                  | Python   |         17 |          1 |          6 |         24 |
+| /home/fidel/Websites/studentconnect/apps/feed/migrations/0003_tag_post_likes_post_media_post_view_count_report_and_more.py | Python   |        106 |          1 |          6 |        113 |
+| /home/fidel/Websites/studentconnect/apps/feed/migrations/0004_reportoption_alter_report_reason.py                          | Python   |         20 |          1 |          6 |         27 |
+| /home/fidel/Websites/studentconnect/apps/feed/migrations/__init__.py                                                       | Python   |          0 |          0 |          1 |          1 |
+| /home/fidel/Websites/studentconnect/apps/feed/models.py                                                                    | Python   |         43 |          0 |         18 |         61 |
+| /home/fidel/Websites/studentconnect/apps/feed/templatetags/__init__.py                                                     | Python   |          0 |          0 |          1 |          1 |
+| /home/fidel/Websites/studentconnect/apps/feed/templatetags/custom_filters.py                                               | Python   |          8 |          0 |          3 |         11 |
+| /home/fidel/Websites/studentconnect/apps/feed/tests.py                                                                     | Python   |          1 |          1 |          2 |          4 |
+| /home/fidel/Websites/studentconnect/apps/feed/urls.py                                                                      | Python   |         14 |          0 |          2 |         16 |
+| /home/fidel/Websites/studentconnect/apps/feed/views.py                                                                     | Python   |        135 |          1 |         24 |        160 |
+| /home/fidel/Websites/studentconnect/apps/groups/__init__.py                                                                | Python   |          0 |          0 |          1 |          1 |
+| /home/fidel/Websites/studentconnect/apps/groups/admin.py                                                                   | Python   |         12 |          0 |          2 |         14 |
+| /home/fidel/Websites/studentconnect/apps/groups/apps.py                                                                    | Python   |          4 |          0 |          3 |          7 |
+| /home/fidel/Websites/studentconnect/apps/groups/forms.py                                                                   | Python   |         10 |          0 |          2 |         12 |
+| /home/fidel/Websites/studentconnect/apps/groups/migrations/0001_initial.py                                                 | Python   |         33 |          1 |          7 |         41 |
+| /home/fidel/Websites/studentconnect/apps/groups/migrations/0002_alter_grouppost_content.py                                 | Python   |         12 |          1 |          6 |         19 |
+| /home/fidel/Websites/studentconnect/apps/groups/migrations/__init__.py                                                     | Python   |          0 |          0 |          1 |          1 |
+| /home/fidel/Websites/studentconnect/apps/groups/models.py                                                                  | Python   |         18 |          0 |          5 |         23 |
+| /home/fidel/Websites/studentconnect/apps/groups/tests.py                                                                   | Python   |          1 |          1 |          2 |          4 |
+| /home/fidel/Websites/studentconnect/apps/groups/urls.py                                                                    | Python   |         10 |          0 |          2 |         12 |
+| /home/fidel/Websites/studentconnect/apps/groups/views.py                                                                   | Python   |         51 |          0 |         13 |         64 |
+| /home/fidel/Websites/studentconnect/apps/jobs/__init__.py                                                                  | Python   |          0 |          0 |          1 |          1 |
+| /home/fidel/Websites/studentconnect/apps/jobs/admin.py                                                                     | Python   |         11 |          0 |          3 |         14 |
+| /home/fidel/Websites/studentconnect/apps/jobs/apps.py                                                                      | Python   |          4 |          0 |          3 |          7 |
+| /home/fidel/Websites/studentconnect/apps/jobs/forms.py                                                                     | Python   |         33 |          0 |          6 |         39 |
+| /home/fidel/Websites/studentconnect/apps/jobs/migrations/0001_initial.py                                                   | Python   |         35 |          1 |          7 |         43 |
+| /home/fidel/Websites/studentconnect/apps/jobs/migrations/0002_application_status_job_status.py                             | Python   |         17 |          1 |          6 |         24 |
+| /home/fidel/Websites/studentconnect/apps/jobs/migrations/__init__.py                                                       | Python   |          0 |          0 |          1 |          1 |
+| /home/fidel/Websites/studentconnect/apps/jobs/models.py                                                                    | Python   |         32 |          0 |         10 |         42 |
+| /home/fidel/Websites/studentconnect/apps/jobs/tests.py                                                                     | Python   |          1 |          1 |          2 |          4 |
+| /home/fidel/Websites/studentconnect/apps/jobs/urls.py                                                                      | Python   |         13 |          0 |          2 |         15 |
+| /home/fidel/Websites/studentconnect/apps/jobs/views.py                                                                     | Python   |        151 |          5 |         30 |        186 |
+| /home/fidel/Websites/studentconnect/apps/marketplace/__init__.py                                                           | Python   |          0 |          0 |          1 |          1 |
+| /home/fidel/Websites/studentconnect/apps/marketplace/admin.py                                                              | Python   |          7 |          0 |          1 |          8 |
+| /home/fidel/Websites/studentconnect/apps/marketplace/apps.py                                                               | Python   |          4 |          0 |          3 |          7 |
+| /home/fidel/Websites/studentconnect/apps/marketplace/forms.py                                                              | Python   |         21 |          0 |          5 |         26 |
+| /home/fidel/Websites/studentconnect/apps/marketplace/migrations/0001_initial.py                                            | Python   |         22 |          1 |          7 |         30 |
+| /home/fidel/Websites/studentconnect/apps/marketplace/migrations/__init__.py                                                | Python   |          0 |          0 |          1 |          1 |
+| /home/fidel/Websites/studentconnect/apps/marketplace/models.py                                                             | Python   |         11 |          0 |          2 |         13 |
+| /home/fidel/Websites/studentconnect/apps/marketplace/tests.py                                                              | Python   |          1 |          1 |          2 |          4 |
+| /home/fidel/Websites/studentconnect/apps/marketplace/urls.py                                                               | Python   |          8 |          0 |          2 |         10 |
+| /home/fidel/Websites/studentconnect/apps/marketplace/views.py                                                              | Python   |         47 |          3 |          9 |         59 |
+| /home/fidel/Websites/studentconnect/apps/messaging/__init__.py                                                             | Python   |          0 |          0 |          1 |          1 |
+| /home/fidel/Websites/studentconnect/apps/messaging/admin.py                                                                | Python   |         11 |          0 |          2 |         13 |
+| /home/fidel/Websites/studentconnect/apps/messaging/apps.py                                                                 | Python   |          4 |          0 |          3 |          7 |
+| /home/fidel/Websites/studentconnect/apps/messaging/forms.py                                                                | Python   |          6 |          0 |          1 |          7 |
+| /home/fidel/Websites/studentconnect/apps/messaging/migrations/0001_initial.py                                              | Python   |         30 |          1 |          7 |         38 |
+| /home/fidel/Websites/studentconnect/apps/messaging/migrations/0002_conversation_job.py                                     | Python   |         14 |          1 |          6 |         21 |
+| /home/fidel/Websites/studentconnect/apps/messaging/migrations/0003_alter_message_content.py                                | Python   |         12 |          1 |          6 |         19 |
+| /home/fidel/Websites/studentconnect/apps/messaging/migrations/__init__.py                                                  | Python   |          0 |          0 |          1 |          1 |
+| /home/fidel/Websites/studentconnect/apps/messaging/models.py                                                               | Python   |         18 |          0 |          6 |         24 |
+| /home/fidel/Websites/studentconnect/apps/messaging/tests.py                                                                | Python   |          1 |          1 |          2 |          4 |
+| /home/fidel/Websites/studentconnect/apps/messaging/urls.py                                                                 | Python   |          8 |          0 |          2 |         10 |
+| /home/fidel/Websites/studentconnect/apps/messaging/views.py                                                                | Python   |         50 |          4 |         12 |         66 |
+| /home/fidel/Websites/studentconnect/apps/notifications/__init__.py                                                         | Python   |          0 |          0 |          1 |          1 |
+| /home/fidel/Websites/studentconnect/apps/notifications/admin.py                                                            | Python   |          7 |          0 |          1 |          8 |
+| /home/fidel/Websites/studentconnect/apps/notifications/apps.py                                                             | Python   |          4 |          0 |          3 |          7 |
+| /home/fidel/Websites/studentconnect/apps/notifications/migrations/0001_initial.py                                          | Python   |         21 |          1 |          7 |         29 |
+| /home/fidel/Websites/studentconnect/apps/notifications/migrations/0002_notification_job.py                                 | Python   |         14 |          1 |          6 |         21 |
+| /home/fidel/Websites/studentconnect/apps/notifications/migrations/__init__.py                                              | Python   |          0 |          0 |          1 |          1 |
+| /home/fidel/Websites/studentconnect/apps/notifications/models.py                                                           | Python   |         11 |          0 |          2 |         13 |
+| /home/fidel/Websites/studentconnect/apps/notifications/tests.py                                                            | Python   |          1 |          1 |          2 |          4 |
+| /home/fidel/Websites/studentconnect/apps/notifications/urls.py                                                             | Python   |          8 |          0 |          2 |         10 |
+| /home/fidel/Websites/studentconnect/apps/notifications/views.py                                                            | Python   |         19 |          0 |          3 |         22 |
+| /home/fidel/Websites/studentconnect/apps/print_models.py                                                                   | Python   |         15 |          1 |          6 |         22 |
+| /home/fidel/Websites/studentconnect/apps/search/__init__.py                                                                | Python   |          0 |          0 |          1 |          1 |
+| /home/fidel/Websites/studentconnect/apps/search/admin.py                                                                   | Python   |          1 |          1 |          2 |          4 |
+| /home/fidel/Websites/studentconnect/apps/search/apps.py                                                                    | Python   |          4 |          0 |          3 |          7 |
+| /home/fidel/Websites/studentconnect/apps/search/migrations/__init__.py                                                     | Python   |          0 |          0 |          1 |          1 |
+| /home/fidel/Websites/studentconnect/apps/search/models.py                                                                  | Python   |          1 |          1 |          2 |          4 |
+| /home/fidel/Websites/studentconnect/apps/search/tests.py                                                                   | Python   |          1 |          1 |          2 |          4 |
+| /home/fidel/Websites/studentconnect/apps/search/urls.py                                                                    | Python   |          6 |          0 |          2 |          8 |
+| /home/fidel/Websites/studentconnect/apps/search/views.py                                                                   | Python   |         49 |          0 |          4 |         53 |
+| /home/fidel/Websites/studentconnect/apps/stories/__init__.py                                                               | Python   |          0 |          0 |          1 |          1 |
+| /home/fidel/Websites/studentconnect/apps/stories/admin.py                                                                  | Python   |         10 |          0 |          2 |         12 |
+| /home/fidel/Websites/studentconnect/apps/stories/apps.py                                                                   | Python   |          4 |          0 |          3 |          7 |
+| /home/fidel/Websites/studentconnect/apps/stories/forms.py                                                                  | Python   |         30 |          0 |          4 |         34 |
+| /home/fidel/Websites/studentconnect/apps/stories/migrations/0001_initial.py                                                | Python   |         33 |          1 |          7 |         41 |
+| /home/fidel/Websites/studentconnect/apps/stories/migrations/__init__.py                                                    | Python   |          0 |          0 |          1 |          1 |
+| /home/fidel/Websites/studentconnect/apps/stories/models.py                                                                 | Python   |         21 |          0 |          6 |         27 |
+| /home/fidel/Websites/studentconnect/apps/stories/tests.py                                                                  | Python   |          1 |          1 |          2 |          4 |
+| /home/fidel/Websites/studentconnect/apps/stories/urls.py                                                                   | Python   |         11 |          0 |          3 |         14 |
+| /home/fidel/Websites/studentconnect/apps/stories/views.py                                                                  | Python   |         94 |          3 |         22 |        119 |
+| Total                                                                                                                      |          |      2,291 |         54 |        592 |      2,937 |
++----------------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
